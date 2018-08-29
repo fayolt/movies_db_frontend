@@ -77,11 +77,12 @@ export default {
     //   }
     },
     mounted:function() {
-        if(this.$route.params.id) {
-            this.index.search(this.$route.params.id, function(err, content) {
-                console.log(content.exhaustiveNbHits);
-            })
-        }
+        console.log("we are in!!!")
+        // if(this.$route.params.id) {
+        //     this.index.search(this.$route.params.id, function(err, content) {
+        //         console.log(content.exhaustiveNbHits);
+        //     })
+        // }
         // if(this.$route.params.id) {
         //     axios.get(this.baseUrl + '/api/sales/orders/'+this.$route.params.id).then(response => {
         //         this.order = response.data;
