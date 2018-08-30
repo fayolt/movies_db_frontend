@@ -10,7 +10,7 @@
           <router-link class="navbar-item is-tab" to="/add">Add</router-link>
         </div>
         <div class="navbar-end">
-          <b-input icon="magnify" type="search" placeholder="Search..." v-on:input="onChange()" v-model="search_term"></b-input>
+          <b-input icon="magnify" type="search" placeholder="Search..." v-on:input="onChange()" v-model="query"></b-input>
         </div>
       </div>
     </div>
@@ -20,18 +20,20 @@
 <script>
 export default {
   name: 'navbar',
-  data: function() {
-      return {
-        search_term: ""
+  props: ['search_term'],
+  data: function(){
+    return {
+      query: ''
     }
   },
   methods: {
     onChange: function() {
-      console.log('we are in change')
-      this.index.search(this.search_term, function(err, content) {
-        console.log(content.hits);
-      })
+      console.log('search emitted')
+      this.$emit('search', this.query)
     }
+  },
+  beforeMount() {
+    this.query = this.search_term
   }
 
 }
