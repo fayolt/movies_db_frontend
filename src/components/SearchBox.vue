@@ -2,11 +2,8 @@
     <div class="box">
         <div class="field has-addons">
             <div class="control is-expanded">
-                <input class="input has-text-centered" type="search" placeholder="» » » » » » find me a movie « « « « « «"
-                    v-on:input="onChange" v-model="query">
-            </div>
-            <div class="control">
-                <a class="button is-info" v-on:click="onChange">Search</a>
+                <input class="input has-text-centered" type="search" placeholder="» » find me a movie « «"
+                    v-on:input="onInput" v-model="query">
             </div>
         </div>
     </div>
@@ -22,11 +19,8 @@
             }
         },
         methods: {
-            onChange: function () {
-                // console.log('search emitted')
+            onInput: function () {
                 this.$emit('search', this.query)
-                console.log('search box', this.query)
-                console.log('search box', this.search_term)
             }
         },
         beforeMount() {

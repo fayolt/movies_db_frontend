@@ -8,7 +8,7 @@
         </div> -->
     <div class="column is-one-third">
         <div class="card large round">
-            <div class="card-image ">
+            <div class="card-image">
                 <figure class="image">
                     <img v-bind:src="movie.image" alt="Image">
                 </figure>
@@ -67,4 +67,7 @@
 </script>
 
 <style scoped>
+    .image {
+        height: 50%;
+    }
 </style>

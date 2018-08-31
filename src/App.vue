@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg">
     <navbar></navbar>
     <router-view/>
   </div>
@@ -14,14 +14,14 @@
   }
 </script>
 
-<style>
+<style scoped>
+@import './assets/styles/index.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url('@/assest/bg.jpg');
 }
 
 </style>

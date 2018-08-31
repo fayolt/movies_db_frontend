@@ -1,11 +1,19 @@
 <template>
-    <div>
+    <div class="b">
         <div class="container">
             <div class="section">
                 <search-box :search_term="search_term" @search="handleSearch"></search-box>
                 <div class="columns is-multiline is-centered">
-                    <movie v-for="movie in movies" :key="movie.objectID" :movie="movie"></movie>
+                    <movie v-for="movie in displayed_movies" :key="movie.objectID" :movie="movie"></movie>
                 </div>
+                <b-pagination class="is-info" v-if="movies.length>0"
+                    :total="movies.length"
+                    :per-page="perPage"
+                    :simple="false"
+                    :order="'is-centered'"
+                    :current.sync="current"
+                    v-on:change="handleDisplay">
+                </b-pagination>
             </div>
         </div>
     </div>
@@ -25,19 +33,40 @@ export default {
   data: function() {
         return {
             search_term: '',
-            movies: []
+            movies: [],
+            displayed_movies: [],
+            perPage: 3,
+            current: 1
         }
     },
     methods:{
-        handleSearch (event) {
+        handleSearch: function (event) {
             console.log("event received")
             console.log('movies', event)
             this.index.search(event, (err, content) => {
                 // console.log(content.hits);
                 this.movies = content.hits;
                 // console.log(this.movies);
+                this.handleDisplay();
             })
+        },
+        handleDisplay: function(event) {
+            this.displayed_movies = this.movies.slice((this.current * this.perPage) - this.perPage, (this.current * this.perPage))
         }
     }
 }
 </script>
+<style scoped>
+    .b { 
+    /* The image used */
+    background-image: url("../assets/bg.png");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: cover;
+    }
+</style>
