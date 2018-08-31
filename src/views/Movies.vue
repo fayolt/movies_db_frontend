@@ -4,7 +4,8 @@
             <div class="section">
                 <search-box :search_term="search_term" @search="handleSearch"></search-box>
                 <div class="columns is-multiline is-centered">
-                    <movie v-for="movie in displayed_movies" :key="movie.objectID" :movie="movie"></movie>
+                    <movie v-for="movie in displayed_movies" :key="movie.objectID" :movie="movie"
+                    @delete="handleDelete"></movie>
                 </div>
                 <b-pagination class="is-info" v-if="movies.length>0"
                     :total="movies.length"
@@ -52,6 +53,9 @@ export default {
         },
         handleDisplay: function(event) {
             this.displayed_movies = this.movies.slice((this.current * this.perPage) - this.perPage, (this.current * this.perPage))
+        },
+        handleDelete: function (event) {
+            
         }
     }
 }

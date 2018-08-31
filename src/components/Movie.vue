@@ -48,8 +48,9 @@
                     .then(() => {
                         this.$toast.open({
                             type: 'is-success',
-                            message: 'moovie deleted successfuly'
+                            message: 'moovie deleted'
                         });
+                        this.$emit('delete', id);
                     })
                     .catch(error => {
                         this.$toast.open({

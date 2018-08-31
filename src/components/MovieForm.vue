@@ -54,15 +54,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="column">
-                    <input class="button" type="submit" v-on:click="handleSave()">
-                </div>
-                <div class="column">
-                    <input class="button" type="reset" v-on:click="handleClear()">
+                
+                <div class="column is-two-thirds">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <button class="button" v-on:click="handleClear()">Reset</button>
+                        </div>
+                        <div class="column is-one-third"></div>
+                        <div class="column is-one-third">
+                            <button class="button is-primary" v-on:click="handleSave()">Add</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-                
         <!-- <h3 class="subtitle">Add a new movie</h3>
         <article class="media">
             <figure class="media-left">
