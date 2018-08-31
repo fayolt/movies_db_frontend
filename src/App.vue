@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    
+    <navbar></navbar>
     <router-view/>
   </div>
 </template>
 
 <script>
+  import Navbar from '@/components/Navbar.vue'
+  export default {
+    components: {
+      Navbar
+    }
+  }
 </script>
 
 <style>
@@ -15,6 +21,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url('@/assest/bg.jpg');
 }
 
 </style>

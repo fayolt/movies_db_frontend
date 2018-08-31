@@ -1,42 +1,36 @@
 <template>
-  <nav class="navbar has-shadow is-primary">
-    <div class="container">
-      <div class="navbar-brand">
-        <router-link class="navbar-item" to="/">MoviesDB</router-link>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <!-- <router-link class="navbar-item is-tab" to="/">Home</router-link> -->
-          <router-link class="navbar-item is-tab" to="/add">Add</router-link>
+  <div class="hero-head">
+    <nav class="navbar is-info">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="http://bulma.io/images/bulma-type-white.png" alt="Logo">
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span>
+              <router-link to="/add">Add</router-link>
+            </span>
+          </span>
         </div>
-        <div class="navbar-end">
-          <b-input icon="magnify" type="search" placeholder="Search..." v-on:input="onChange()" v-model="query"></b-input>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <span class="navbar-item">
+              <span class="icon">
+                <i class="magnify"></i>
+                <router-link class="button is-white is-outlined" to="/add">Add</router-link>
+                </span>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'navbar',
-  props: ['search_term'],
-  data: function(){
-    return {
-      query: ''
-    }
-  },
-  methods: {
-    onChange: function() {
-      console.log('search emitted')
-      this.$emit('search', this.query)
-    }
-  },
-  beforeMount() {
-    this.query = this.search_term
+  export default {
+    name: 'Navbar'
   }
-
-}
 </script>
 
 <style>
