@@ -42,12 +42,8 @@ export default {
     },
     methods:{
         handleSearch: function (event) {
-            console.log("event received")
-            console.log('movies', event)
             this.index.search(event, (err, content) => {
-                // console.log(content.hits);
                 this.movies = content.hits;
-                // console.log(this.movies);
                 this.handleDisplay();
             })
         },
@@ -55,7 +51,12 @@ export default {
             this.displayed_movies = this.movies.slice((this.current * this.perPage) - this.perPage, (this.current * this.perPage))
         },
         handleDelete: function (event) {
-            
+            for (var i = this.movies.length-1; i >= 0; i--) {
+                if (this.movies[i].objectID == event) {
+                    this.movies = this.movies.splice(i, 1);
+                    break;
+                }
+            } 
         }
     }
 }
