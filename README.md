@@ -4,26 +4,17 @@
 
 * Docker & Docker Compose
 
-## Project setup
+## To start your Phoenix app
+
+* Build the images
 
 ```sh
-npm install
+docker-compose build
 ```
-
-### Compiles and hot-reloads for development
+* Start the containers 
 
 ```sh
-npm run serve
+docker-compose up
 ```
 
-### Compiles and minifies for production
-
-```sh
-npm run build
-```
-
-### Lints and fixes files
-
-```sh
-npm run lint
-```
+Now the backend app is available at [`localhost:8080`](http://localhost:8080)
