@@ -47,7 +47,7 @@ export default {
                 this.handleDisplay();
             })
         },
-        handleDisplay: function(event) {
+        handleDisplay: function() {
             this.displayed_movies = this.movies.slice((this.current * this.perPage) - this.perPage, (this.current * this.perPage))
         },
         handleDelete: function (event) {

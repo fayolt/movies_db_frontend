@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <movie-form></movie-form>
+    <div class="container">
+        <div class="level-item has-text-centered">
+            <movie-form></movie-form>
+        </div>
     </div>
 </template>
 

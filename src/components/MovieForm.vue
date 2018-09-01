@@ -1,12 +1,11 @@
 <template>
-    <div>
-        <div class="container">
-            <h3 class="title">Here You Go!!!</h3>
+    <article class="message is-link">
+        <div class="message-body">
             <div class="columns is-centered is-mobile is-multiline">
-                <div class="column is-one-third">
-                    <img src="https://bulma.io/images/placeholders/300x225.png"/> <!-- v-bind:src="movie.image -->
+                <div class="column is-3">
+                    <img class="movie-image" v-bind:src="movie.image"/>
                 </div>
-                <div class="column is-one-third">
+                <div class="column is-6">
                     <div class="columns">
                         <div class="column">
                             <b-input placeholder="Title" type="text" v-model="movie.title"></b-input>
@@ -32,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-two-thirds">
+                <div class="column is-9">
                     <div class="columns">
                         <div class="column">
                             <b-taginput v-model="movie.genre"></b-taginput>
@@ -55,78 +54,15 @@
                     </div>
                 </div>
                 
-                <div class="column is-two-thirds">
-                    <div class="columns">
-                        <div class="column is-one-third">
-                            <button class="button" v-on:click="handleClear()">Reset</button>
-                        </div>
-                        <div class="column is-one-third"></div>
-                        <div class="column is-one-third">
-                            <button class="button is-primary" v-on:click="handleSave()">Add</button>
-                        </div>
-                    </div>
+                <div class="column is-1 is-offset-6">
+                    <button class="button is-medium" v-on:click="handleClear()">Reset</button>
+                </div>
+                <div class="column is-1 is-offset-1">
+                    <button class="button is-primary is-medium" v-on:click="handleSave()">Add</button>
                 </div>
             </div>
         </div>
-        <!-- <h3 class="subtitle">Add a new movie</h3>
-        <article class="media">
-            <figure class="media-left">
-                <img v-bind:src="movie.image">
-            </figure>
-            <figure class="media-content">
-                <b-field>
-                    <b-input placeholder="Title" type="search" icon="magnify"> </b-input>
-                </b-field>
-                <b-field>
-                    <b-input v-model="movie.image" placeholder="Link to image" icon="credit-card"></b-input>
-                </b-field>
-                <div class="columns">
-                    <div class="column">
-                        <b-field>
-                            <b-input placeholder="Year" type="text" icon="email"></b-input>
-                        </b-field>
-                    </div>
-                    <div class="column">
-                        <b-field>
-                            <b-input placeholder="Score" icon="credit-card"> </b-input>
-                        </b-field>
-                    </div>
-                    <div class="column">
-                        <b-field>
-                            <b-input placeholder="Color" icon="credit-card"></b-input>
-                        </b-field>
-                    </div>
-                    <div class="column">
-                        <b-field>
-                            <b-input placeholder="Rating" icon="credit-card"></b-input>
-                        </b-field>
-                    </div>
-                </div> 
-            </figure>
-        </article>
-        <div class="columns">
-            <div class="column is-1">
-                <div class="label">Genre</div>
-            </div>
-            <div class="column">
-                <b-field>
-                    <b-taginput v-model="movie.genre"></b-taginput>
-                </b-field> 
-            </div>
-        </div>
-        
-        
-        <b-field>
-            <b-taginput v-model="movie.actors"></b-taginput>
-        </b-field> 
-        <b-field >
-            <b-taginput v-model="movie.actor_facets"></b-taginput>
-        </b-field> 
-        <b-field>
-        </b-field>  -->
-            
-    </div>
-    
+    </article>
 </template>
 
 <script>
@@ -140,19 +76,19 @@ export default {
     },
     methods: {
         handleSave: function() {
-            // axios.post('http://localhost:4000/api/movies', this.movies)
-            // .then(() =>{
-            //     this.$toast.open({
-            //         type: 'is-success',
-            //         message: 'moovie deleted successfuly'
-            //     });
-            // })
-            // .catch(error => {
-            //     this.$toast.open({
-            //         type: 'is-danger',
-            //         message: error.response.data
-            //     });
-            // })
+            axios.post('http://localhost:4000/api/movies', {"movie": this.movies})
+            .then(() =>{
+                this.$toast.open({
+                    type: 'is-success',
+                    message: 'moovie deleted successfuly'
+                });
+            })
+            .catch(error => {
+                this.$toast.open({
+                    type: 'is-danger',
+                    message: error.response.data
+                });
+            })
             console.log(this.movie)
         },
         handleClear: function(){
@@ -164,7 +100,22 @@ export default {
 </script>
 
 <style>
+    .movie-image {
+        top: -30px;
+        left: 50%;
+        width: 160px;
+        height: 160px;
+        margin-left: -15px;
+        border: 3px solid #7957d5;
+        border-radius: 50%;
+    }
     .columns.is-mobile > .column.is-one-third {
         align-self: center;
+    }
+    .message {
+        background-color: whitesmoke;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-top: 1rem;
     }
 </style>
