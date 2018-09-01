@@ -55,10 +55,10 @@
                 </div>
                 
                 <div class="column is-1 is-offset-6">
-                    <button class="button is-medium" v-on:click="handleClear()">Reset</button>
+                    <button class="button" v-on:click="handleClear()">Reset</button>
                 </div>
                 <div class="column is-1 is-offset-1">
-                    <button class="button is-primary is-medium" v-on:click="handleSave()">Add</button>
+                    <button class="button is-primary" v-on:click="handleSave()">Add</button>
                 </div>
             </div>
         </div>
@@ -82,6 +82,7 @@ export default {
                     type: 'is-success',
                     message: 'moovie deleted successfuly'
                 });
+                this.$router.push('/')
             })
             .catch(error => {
                 this.$toast.open({
