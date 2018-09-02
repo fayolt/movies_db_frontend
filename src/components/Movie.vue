@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="media level-item has-text-centered">
-                    <figure v-for="(facet, index) in movie.actor_facets" :key="index" class="tooltip" v-bind:data-tooltip="facet.split('|')[1]" v-if="index<8">
+                    <figure v-for="(facet, index) in movie.actor_facets" :key="index" class="tooltip" v-bind:data-tooltip="movie.actors[index]" v-if="index<8">
                         <img class="author-image" v-bind:src="facet.split('|')[0]">
                     </figure>
                 </div>
@@ -70,7 +70,7 @@
         width: 60px;
         height: 50px;
         margin-left: -15px;
-        border: 3px solid #ccc;
+        border: 3px solid #3a416f;
         border-radius: 50%;
     }
 </style>

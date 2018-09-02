@@ -8,7 +8,7 @@
                     @delete="handleDelete"></movie>
                 </div>
                 <b-pagination class="is-info" v-if="movies.length>0"
-                    :total="movies.length"
+                    :total.sync="movies.length"
                     :per-page="perPage"
                     :simple="false"
                     :order="'is-centered'"
@@ -51,12 +51,12 @@ export default {
             this.displayed_movies = this.movies.slice((this.current * this.perPage) - this.perPage, (this.current * this.perPage))
         },
         handleDelete: function (event) {
-            for (var i = this.movies.length-1; i >= 0; i--) {
-                if (this.movies[i].objectID == event) {
-                    this.movies = this.movies.splice(i, 1);
-                    break;
-                }
-            } 
+            console.log(this.movies.length, this.movies)
+            this.movies = this.movies.filter(movie => {
+                return movie.objectID != event;
+            });
+            this.handleDisplay();
+            console.log(this.movies.length, this.movies)
         }
     }
 }

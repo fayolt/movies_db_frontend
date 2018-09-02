@@ -1,8 +1,8 @@
 <template>
-    <article class="message is-link">
+    <article class="message is-primary">
         <div class="message-body">
             <div class="columns is-centered is-mobile is-multiline">
-                <div class="column is-3">
+                <div class="column is-3" v-show="show">
                     <img class="movie-image" v-bind:src="movie.image"/>
                 </div>
                 <div class="column is-6">
@@ -71,12 +71,13 @@ export default {
     name: 'MovieForm',
     data: function() {
         return {
-            movie: {}
+            movie: {},
+            show: false
         }
     },
     methods: {
         handleSave: function() {
-            axios.post('http://localhost:4000/api/movies', {"movie": this.movies})
+            axios.post('http://localhost:4000/api/movies', {movie: this.movie})
             .then(() =>{
                 this.$toast.open({
                     type: 'is-success',
@@ -90,10 +91,17 @@ export default {
                     message: error.response.data
                 });
             })
-            console.log(this.movie)
         },
         handleClear: function(){
             this.movie = {}
+        }
+    },
+    watch: {
+        movie: function() {
+            if(this.movie.image == '')
+                this.show = false
+            else
+                this.show = true
         }
     }
 
@@ -107,7 +115,7 @@ export default {
         width: 160px;
         height: 160px;
         margin-left: -15px;
-        border: 3px solid #7957d5;
+        border: 3px solid #3a416f;
         border-radius: 50%;
     }
     .columns.is-mobile > .column.is-one-third {

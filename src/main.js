@@ -3,7 +3,6 @@ import Buefy from 'buefy'
 import algoliasearch from 'algoliasearch'
 import App from './App.vue'
 import router from './router'
-import 'buefy/lib/buefy.css'
 
 Vue.use(Buefy)
 

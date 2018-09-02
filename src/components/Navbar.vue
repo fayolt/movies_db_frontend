@@ -4,7 +4,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="http://bulma.io/images/bulma-type-white.png" alt="Logo">
+            <img src="../assets/search-by-algolia-dark-background.png" alt="Logo">
           </a>
           <span class="navbar-burger burger" data-target="navbarMenu">
             <span>
@@ -12,13 +12,10 @@
             </span>
           </span>
         </div>
-        <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-menu" v-show="show">
           <div class="navbar-end">
             <span class="navbar-item">
-              <span class="icon">
-                <i class="magnify"></i>
-                <router-link class="button is-white is-outlined" to="/add">Add</router-link>
-                </span>
+              <router-link class="button is-white is-outlined" to="/add">Add New Movie</router-link>
             </span>
           </div>
         </div>
@@ -29,7 +26,18 @@
 
 <script>
   export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    data: function () {
+      return {
+        show: true
+      }
+    },
+    watch:{
+      $route (to, from) {
+        if(to.path == '/add')
+          this.show = false
+      }
+    } 
   }
 </script>
 
