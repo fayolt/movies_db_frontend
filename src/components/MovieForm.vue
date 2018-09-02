@@ -8,7 +8,9 @@
                 <div class="column is-6">
                     <div class="columns">
                         <div class="column">
-                            <b-input placeholder="Movie Title" type="text" v-model="movie.title"></b-input>
+                            <b-field :type="isValidTitle" :message="titleMessage">
+                                <b-input placeholder="Movie Title" type="text" v-model="movie.title"></b-input>
+                            </b-field>
                         </div>
                     </div>
                     <div class="columns">
@@ -34,28 +36,28 @@
                 <div class="column is-9">
                     <div class="columns">
                         <div class="column">
-                            <b-field horizontal label="Genre">
+                            <b-field :type="isValidGenre" :message="genreMessage" horizontal label="Genre">
                                 <b-taginput v-model="movie.genre"></b-taginput>
                             </b-field>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <b-field horizontal label="Actors">
+                            <b-field :type="isValidActors" :message="actorsMessage" horizontal label="Actors">
                                 <b-taginput v-model="movie.actors"></b-taginput>
                             </b-field> 
                         </div>
                     </div> 
                     <div class="columns">
                         <div class="column">
-                            <b-field horizontal label="Other Titles">
+                            <b-field :message="altMessage" horizontal label="Other Titles">
                                 <b-taginput v-model="movie.alternative_titles"></b-taginput>
                             </b-field>
                         </div>
                     </div> 
                     <div class="columns">
                         <div class="column">
-                            <b-field horizontal label="Actors Facets">
+                            <b-field :message="facetsMessage" horizontal label="Actors Facets">
                                 <b-taginput v-model="movie.actor_facets"></b-taginput>
                             </b-field>
                         </div>
@@ -66,7 +68,7 @@
                     <button class="button" v-on:click="handleClear()">Reset</button>
                 </div>
                 <div class="column is-1 is-offset-1">
-                    <button class="button is-primary" v-on:click="handleSave()">Add</button>
+                    <button :disabled="isFormValid" class="button is-primary" v-on:click="handleSave()">Add</button>
                 </div>
             </div>
         </div>
@@ -84,23 +86,86 @@ export default {
     },
     methods: {
         handleSave: function() {
-            axios.post('http://localhost:4000/api/movies', {movie: this.movie})
-            .then(() =>{
-                this.$toast.open({
-                    type: 'is-success',
-                    message: 'moovie deleted successfuly'
-                });
-                this.$router.push('/')
-            })
-            .catch(error => {
-                this.$toast.open({
-                    type: 'is-danger',
-                    message: error.response.data
-                });
-            })
+            console.log(this.movie)
+            // axios.post('http://localhost:4000/api/movies', {movie: this.movie})
+            // .then(() =>{
+            //     this.$toast.open({
+            //         type: 'is-success',
+            //         message: 'moovie deleted successfuly'
+            //     });
+            //     this.$router.push('/')
+            // })
+            // .catch(error => {
+            //     this.$toast.open({
+            //         type: 'is-danger',
+            //         message: error.response.data
+            //     });
+            // })
         },
         handleClear: function(){
             this.movie = {}
+        }
+    },
+    computed: {
+        isValidTitle() {
+            let status = 'is-normal'
+            if (this.movie.title == "") 
+                status = 'is-danger'
+            return status
+        },
+        titleMessage() {
+            let message = ''
+            if (this.movie.title === '') 
+                message = "Please provide a movie title"
+            return message
+        },
+        isValidGenre() {
+            let status = 'is-normal'
+            if (this.movie.genre != undefined && this.movie.genre.length == 0) 
+                status = 'is-danger'
+            return status
+        },
+        genreMessage() {
+            let message = ''
+            if (this.movie.genre == undefined || this.movie.genre.length == 0) 
+                message = "Please enter a movie genre and hit enter"
+            return message
+        },
+        isValidActors() {
+            let status = 'is-normal'
+            if (this.movie.actors != undefined && this.movie.actors.length == 0) 
+                status = 'is-danger'
+            return status
+        },
+        actorsMessage() {
+            let message = ''
+            if (this.movie.actors == undefined || this.movie.actors.length == 0 ) 
+                message = "Please enter an actor and hit enter"
+            return message
+        },
+        altMessage() {
+            let message = ''
+            if (this.movie.alternative_titles == undefined || this.movie.alternative_titles.length == 0) 
+                message = "Please enter an alternative title and hit enter"
+            return message
+        },
+        facetsMessage() {
+            let message = ''
+            if (this.movie.actor_facets == undefined || this.movie.actor_facets.length == 0) 
+                message = "Please enter an actor facet and hit enter"
+            return message
+        },
+        isFormValid() {
+            if (Object.keys(this.movie).length === 0 
+                || this.movie.title == undefined 
+                || this.movie.title === '' 
+                || this.movie.genre == undefined 
+                || this.movie.genre.length == 0
+                || this.movie.actors == undefined 
+                || this.movie.actors.length == 0)
+                return true
+            else 
+                return false
         }
     }
 }
