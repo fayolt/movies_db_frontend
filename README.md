@@ -14,7 +14,7 @@ docker-compose build
 * Start the containers 
 
 ```sh
-docker-compose up
+docker-compose up -d
 ```
 
 Now the backend app is available at [`localhost:8080`](http://localhost:8080)
