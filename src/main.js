@@ -12,7 +12,7 @@ Vue.mixin({
   data: function() {
     return {
       get index() {
-        return algoliasearch('F1H4RHQQOS', '0d329e74f614d29ee2c8b1e4c9d03fb5').initIndex('movies_db_index');
+        return algoliasearch(process.env.VUE_APP_APP_KEY, process.env.VUE_APP_SEARCH_KEY).initIndex('movies_db_index');
       }
     }
   }
