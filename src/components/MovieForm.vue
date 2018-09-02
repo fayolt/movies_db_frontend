@@ -2,18 +2,18 @@
     <article class="message is-primary">
         <div class="message-body">
             <div class="columns is-centered is-mobile is-multiline">
-                <div class="column is-3" v-show="show">
+                <div class="column is-3">
                     <img class="movie-image" v-bind:src="movie.image"/>
                 </div>
                 <div class="column is-6">
                     <div class="columns">
                         <div class="column">
-                            <b-input placeholder="Title" type="text" v-model="movie.title"></b-input>
+                            <b-input placeholder="Movie Title" type="text" v-model="movie.title"></b-input>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <b-input v-model="movie.image" placeholder="Link to image" type="text"></b-input>
+                            <b-input v-model="movie.image" placeholder="Link to movie image" type="text"></b-input>
                         </div>
                     </div>
                     <div class="columns">
@@ -34,22 +34,30 @@
                 <div class="column is-9">
                     <div class="columns">
                         <div class="column">
-                            <b-taginput v-model="movie.genre"></b-taginput>
+                            <b-field horizontal label="Genre">
+                                <b-taginput v-model="movie.genre"></b-taginput>
+                            </b-field>
                         </div>
                     </div>
                     <div class="columns">
                         <div class="column">
-                            <b-taginput v-model="movie.actors"></b-taginput>
+                            <b-field horizontal label="Actors">
+                                <b-taginput v-model="movie.actors"></b-taginput>
+                            </b-field> 
                         </div>
                     </div> 
                     <div class="columns">
                         <div class="column">
-                            <b-taginput v-model="movie.alternative_titles"></b-taginput>
+                            <b-field horizontal label="Other Titles">
+                                <b-taginput v-model="movie.alternative_titles"></b-taginput>
+                            </b-field>
                         </div>
                     </div> 
                     <div class="columns">
                         <div class="column">
-                            <b-taginput v-model="movie.actor_facets"></b-taginput>
+                            <b-field horizontal label="Actors Facets">
+                                <b-taginput v-model="movie.actor_facets"></b-taginput>
+                            </b-field>
                         </div>
                     </div>
                 </div>
@@ -71,8 +79,7 @@ export default {
     name: 'MovieForm',
     data: function() {
         return {
-            movie: {},
-            show: false
+            movie: {}
         }
     },
     methods: {
@@ -95,16 +102,7 @@ export default {
         handleClear: function(){
             this.movie = {}
         }
-    },
-    watch: {
-        movie: function() {
-            if(this.movie.image == '')
-                this.show = false
-            else
-                this.show = true
-        }
     }
-
 }
 </script>
 

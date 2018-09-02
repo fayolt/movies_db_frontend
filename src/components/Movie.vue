@@ -26,8 +26,10 @@
                     </div>
                 </div>
                 <div class="media level-item has-text-centered">
-                    <figure v-for="(facet, index) in movie.actor_facets" :key="index" class="tooltip" v-bind:data-tooltip="movie.actors[index]" v-if="index<8">
-                        <img class="author-image" v-bind:src="facet.split('|')[0]">
+                    <figure v-for="(facet, index) in movie.actor_facets" :key="index" v-if="index<8">
+                        <b-tooltip v-bind:label="movie.actors[index]">
+                            <img class="author-image" v-bind:src="facet.split('|')[0]">
+                        </b-tooltip>
                     </figure>
                 </div>
             </div>

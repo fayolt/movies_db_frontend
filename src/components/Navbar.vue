@@ -8,7 +8,7 @@
           </a>
           <span class="navbar-burger burger" data-target="navbarMenu">
             <span>
-              <router-link to="/add">Add</router-link>
+              <router-link to="/add">Add New Movie</router-link>
             </span>
           </span>
         </div>
