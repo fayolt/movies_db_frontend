@@ -86,21 +86,20 @@ export default {
     },
     methods: {
         handleSave: function() {
-            console.log(this.movie)
-            // axios.post('http://localhost:4000/api/movies', {movie: this.movie})
-            // .then(() =>{
-            //     this.$toast.open({
-            //         type: 'is-success',
-            //         message: 'moovie deleted successfuly'
-            //     });
-            //     this.$router.push('/')
-            // })
-            // .catch(error => {
-            //     this.$toast.open({
-            //         type: 'is-danger',
-            //         message: error.response.data
-            //     });
-            // })
+            axios.post('http://localhost:4000/api/movies', {movie: this.movie})
+            .then(() =>{
+                this.$toast.open({
+                    type: 'is-success',
+                    message: 'moovie deleted successfuly'
+                });
+                this.$router.push('/')
+            })
+            .catch(error => {
+                this.$toast.open({
+                    type: 'is-danger',
+                    message: error.response.data
+                });
+            })
         },
         handleClear: function(){
             this.movie = {}

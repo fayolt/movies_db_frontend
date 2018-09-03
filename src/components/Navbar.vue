@@ -33,7 +33,7 @@
       }
     },
     watch:{
-      $route (to, from) {
+      $route (to) {
         if(to.path == '/add')
           this.show = false
       }
